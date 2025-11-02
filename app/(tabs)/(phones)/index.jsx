@@ -1,8 +1,9 @@
-import { StyleSheet, FlatList } from "react-native";
+import { StyleSheet, FlatList, View} from "react-native";
 import { SafeAreaView, SafeAreaProvider } from "react-native-safe-area-context";
 import { phoneWidth } from "../../../constants/Dimensions";
 import { Card } from "../../../components/Card";
 import { useRouter } from "expo-router";
+
 
 const phones = [
   {
@@ -91,26 +92,24 @@ const PhonesScreen = () => {
   };
 
   return (
-    <SafeAreaProvider>
-      <SafeAreaView style={styles.container}>
-        <FlatList
-          data={phones}
-          renderItem={({ item, index }) => (
-            <Card
-              key={index}
-              name={item.name}
-              price={item.price}
-              description={item.description}
-              background={item.background}
-              nameColor={item.nameColor}
-              link={item.link}
-              linkColor={item.linkColor}
-              onPress={() => goToDetails(item)}
-            />
-          )}
-        />
-      </SafeAreaView>
-    </SafeAreaProvider>
+    <View style={styles.container}>
+      <FlatList
+        data={phones}
+        renderItem={({ item, index }) => (
+          <Card
+            key={index}
+            name={item.name}
+            price={item.price}
+            description={item.description}
+            background={item.background}
+            nameColor={item.nameColor}
+            link={item.link}
+            linkColor={item.linkColor}
+            onPress={() => goToDetails(item)}
+          />
+        )}
+      />
+    </View>
   );
 };
 

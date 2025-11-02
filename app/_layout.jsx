@@ -1,16 +1,20 @@
-import { View, Text } from "react-native";
-import React from "react";
-import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+import React, { createContext } from "react";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 import { Slot } from "expo-router";
+import { ProfileProvider } from "../context/profile/profile.context";
 
-const RootLaayout = () => {
+export const ThemeContext = createContext({})
+
+const RootLayout = () => {
   return (
-    <SafeAreaProvider>
-      <SafeAreaView style={{ flex: 1 }}>
-        <Slot />
-      </SafeAreaView>
-    </SafeAreaProvider>
+    <ThemeContext.Provider>
+      <ProfileProvider>
+        <SafeAreaProvider>
+          <Slot />
+        </SafeAreaProvider>
+      </ProfileProvider>
+    </ThemeContext.Provider>
   );
 };
 
-export default RootLaayout;
+export default RootLayout;

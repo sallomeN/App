@@ -92,25 +92,23 @@ const LaptopsScreen = () => {
   };
 
   return (
-    <SafeAreaProvider>
-      <SafeAreaView style={styles.container}>
-        <FlatList
-          data={laptops}
-          renderItem={({ item, index }) => (
-            <Card
-              key={index}
-              name={item.name}
-              price={item.price}
-              description={item.description}
-              background={item.background}
-              nameColor={item.nameColor}
-              linkColor={item.linkColor}
-              onPress={() => goToDetails(item)}
-            />
-          )}
-        />
-      </SafeAreaView>
-    </SafeAreaProvider>
+    <View style={styles.container}>
+      <FlatList
+        data={laptops}
+        renderItem={({ item, index }) => (
+          <Card
+            key={index}
+            name={item.name}
+            price={item.price}
+            description={item.description}
+            background={item.background}
+            nameColor={item.nameColor}
+            linkColor={item.linkColor}
+            onPress={() => goToDetails(item)}
+          />
+        )}
+      />
+    </View>
   );
 };
 

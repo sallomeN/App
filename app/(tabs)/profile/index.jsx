@@ -1,68 +1,69 @@
 import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import React from 'react'
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { phoneWidth } from "../../../constants/Dimensions";
-import { useRouter } from "expo-router";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import Foundation from "@expo/vector-icons/Foundation";
 import Entypo from "@expo/vector-icons/Entypo";
-import { useLocalSearchParams } from "expo-router";
+import { useProfileContext } from "../../../context/profile/profile.context";
+import { useRouter } from "expo-router";
 
 const ProfileScreen = () => {
-  const router = useRouter();
-  const params = useLocalSearchParams();
+const { profileDetails } = useProfileContext();
+const router = useRouter();
 
   return (
-    <SafeAreaProvider>
-      <SafeAreaView style={styles.container}>
-        <View style={styles.infoBox}>
-          <View style={styles.iconAndNameBox}>
-            <View>
-              <FontAwesome name="user-circle-o" size={90} color="black" />
-            </View>
-            <View style={{ gap: 10 }}>
-              <View style={{ flexDirection: "row", alignItems: "center" }}>
-                <Text style={styles.nameTitle}>Name: </Text>
-                <Text style={styles.name}>{params.name || "Salome"}</Text>
-              </View>
-              <View style={{ flexDirection: "row", alignItems: "center" }}>
-                <Text style={styles.nameTitle}>Last Name: </Text>
-                <Text style={styles.name}>{params.lastName || "Nozadze"}</Text>
-              </View>
-            </View>
+    <View style={styles.container}>
+      <View style={styles.infoBox}>
+        <View style={styles.iconAndNameBox}>
+          <View>
+            <FontAwesome name="user-circle-o" size={90} color="black" />
           </View>
-          <View style={styles.emailBox}>
+          <View style={{ gap: 10 }}>
             <View style={{ flexDirection: "row", alignItems: "center" }}>
-              <MaterialIcons name="email" size={24} color="black" />
-              <Text style={styles.title}> Your email adress:</Text>
+              <Text style={styles.nameTitle}>Name: </Text>
+              <Text style={styles.name}>{profileDetails.name || "Salome"}</Text>
             </View>
-            <View style={styles.input}>
-              <Text style={styles.text}>
-                {params.email || "nozadzesalome763@gmail.com"}
+            <View style={{ flexDirection: "row", alignItems: "center" }}>
+              <Text style={styles.nameTitle}>Last Name: </Text>
+              <Text style={styles.name}>
+                {profileDetails.lastName || "Nozadze"}
               </Text>
             </View>
           </View>
-
-          <View style={styles.phoneBox}>
-            <View style={{ flexDirection: "row", alignItems: "center" }}>
-              <Foundation name="telephone" size={24} color="black" />
-              <Text style={styles.title}> Your phone number:</Text>
-            </View>
-            <View style={styles.input}>
-              <Text style={styles.text}>{params.phone || "557 496 212"}</Text>
-            </View>
-          </View>
-
-          <TouchableOpacity onPress={() => router.push("/profile/editProfile")}>
-            <View style={styles.editBtn}>
-              <Text style={styles.btnText}> Edit your info </Text>
-              <Entypo name="edit" size={24} color="black" />
-            </View>
-          </TouchableOpacity>
         </View>
-      </SafeAreaView>
-    </SafeAreaProvider>
+        <View style={styles.emailBox}>
+          <View style={{ flexDirection: "row", alignItems: "center" }}>
+            <MaterialIcons name="email" size={24} color="black" />
+            <Text style={styles.title}> Your email adress:</Text>
+          </View>
+          <View style={styles.input}>
+            <Text style={styles.text}>
+              {profileDetails.email || "nozadzesalome763@gmail.com"}
+            </Text>
+          </View>
+        </View>
+
+        <View style={styles.phoneBox}>
+          <View style={{ flexDirection: "row", alignItems: "center" }}>
+            <Foundation name="telephone" size={24} color="black" />
+            <Text style={styles.title}> Your phone number:</Text>
+          </View>
+          <View style={styles.input}>
+            <Text style={styles.text}>
+              {profileDetails.phone || "557 496 212"}
+            </Text>
+          </View>
+        </View>
+
+        <TouchableOpacity onPress={() => router.push("/profile/editProfile")}>
+          <View style={styles.editBtn}>
+            <Text style={styles.btnText}> Edit your info </Text>
+            <Entypo name="edit" size={24} color="black" />
+          </View>
+        </TouchableOpacity>
+      </View>
+    </View>
   );
 }
 const styles = StyleSheet.create({
