@@ -22,12 +22,12 @@ const router = useRouter();
           <View style={{ gap: 10 }}>
             <View style={{ flexDirection: "row", alignItems: "center" }}>
               <Text style={styles.nameTitle}>Name: </Text>
-              <Text style={styles.name}>{profileDetails.name || "Salome"}</Text>
+              <Text style={styles.name}>{profileDetails.name || " "}</Text>
             </View>
             <View style={{ flexDirection: "row", alignItems: "center" }}>
               <Text style={styles.nameTitle}>Last Name: </Text>
               <Text style={styles.name}>
-                {profileDetails.lastName || "Nozadze"}
+                {profileDetails.lastName || " "}
               </Text>
             </View>
           </View>
@@ -39,7 +39,7 @@ const router = useRouter();
           </View>
           <View style={styles.input}>
             <Text style={styles.text}>
-              {profileDetails.email || "nozadzesalome763@gmail.com"}
+              {profileDetails.email || " "}
             </Text>
           </View>
         </View>
@@ -51,7 +51,7 @@ const router = useRouter();
           </View>
           <View style={styles.input}>
             <Text style={styles.text}>
-              {profileDetails.phone || "557 496 212"}
+              {profileDetails.phone || " "}
             </Text>
           </View>
         </View>

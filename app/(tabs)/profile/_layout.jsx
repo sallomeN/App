@@ -14,6 +14,7 @@ export default function ProfileLayout() {
             fontWeight: "bold",
             color: "white",
           },
+          headerBackVisible: false,
         }}
       />
       <Stack.Screen
