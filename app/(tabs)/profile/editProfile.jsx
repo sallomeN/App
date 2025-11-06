@@ -21,19 +21,23 @@ const editProfileScreen = () => {
   const { profileDetails, dispatch } = useProfileContext();
   const router = useRouter();
 
-  const [name, setName] = useState(profileDetails.name);
-  const [lastName, setLastName] = useState(profileDetails.lastName);
-  const [email, setEmail] = useState(profileDetails.email);
-  const [phone, setPhone] = useState(profileDetails.phone);
+  const [name, setName] = useState(profileDetails.currentUser?.name || "");
+  const [lastName, setLastName] = useState(profileDetails.currentUser?.lastName || "");
+  const [email, setEmail] = useState(profileDetails.currentUser?.email || "");
+  const [phone, setPhone] = useState(profileDetails.currentUser?.phone || "");
 
-  const saveChanges = () => {
-    dispatch({ type: "UPDATE", fieldName: "name", value: name });
-    dispatch({ type: "UPDATE", fieldName: "lastName", value: lastName });
-    dispatch({ type: "UPDATE", fieldName: "email", value: email });
-    dispatch({ type: "UPDATE", fieldName: "phone", value: phone });
-
-    router.push("/profile");
+const saveChanges = () => {
+  const updatedUser = {
+    ...profileDetails.currentUser,
+    name,
+    lastName,
+    email,
+    phone,
   };
+
+  dispatch({ type: "UPDATE_PROFILE", payload: updatedUser });
+  router.push("/profile");
+};
   return (
     // <KeyboardAvoidingView>
     //   <ScrollView>
@@ -48,7 +52,6 @@ const editProfileScreen = () => {
               style={styles.input}
               placeholder="Enter your name"
               placeholderTextColor="#FFC1CC"
-              defaultValue="{profileDetails.name}"
               value={name}
               onChangeText={setName}
             />
@@ -57,7 +60,6 @@ const editProfileScreen = () => {
               style={styles.input}
               placeholder="Enter your last name"
               placeholderTextColor="#FFC1CC"
-              defaultValue="{profileDetails.lastName}"
               value={lastName}
               onChangeText={setLastName}
             />
@@ -71,7 +73,6 @@ const editProfileScreen = () => {
             style={styles.input}
             placeholder="Enter your email"
             placeholderTextColor="#FFC1CC"
-            defaultValue="{profileDetails.email}"
             value={email}
             onChangeText={setEmail}
           />
@@ -85,7 +86,6 @@ const editProfileScreen = () => {
             style={styles.input}
             placeholder="Enter your phone number"
             placeholderTextColor="#FFC1CC"
-            defaultValue="{profileDetails.phone}"
             value={phone}
             onChangeText={setPhone}
           />

@@ -11,6 +11,7 @@ import { useRouter } from "expo-router";
 const ProfileScreen = () => {
 const { profileDetails } = useProfileContext();
 const router = useRouter();
+const user = profileDetails.currentUser;
 
   return (
     <View style={styles.container}>
@@ -22,13 +23,11 @@ const router = useRouter();
           <View style={{ gap: 10 }}>
             <View style={{ flexDirection: "row", alignItems: "center" }}>
               <Text style={styles.nameTitle}>Name: </Text>
-              <Text style={styles.name}>{profileDetails.name || " "}</Text>
+              <Text style={styles.name}>{user?.name || " "}</Text>
             </View>
             <View style={{ flexDirection: "row", alignItems: "center" }}>
               <Text style={styles.nameTitle}>Last Name: </Text>
-              <Text style={styles.name}>
-                {profileDetails.lastName || " "}
-              </Text>
+              <Text style={styles.name}>{user?.lastName || " "}</Text>
             </View>
           </View>
         </View>
@@ -38,9 +37,7 @@ const router = useRouter();
             <Text style={styles.title}> Your email adress:</Text>
           </View>
           <View style={styles.input}>
-            <Text style={styles.text}>
-              {profileDetails.email || " "}
-            </Text>
+            <Text style={styles.text}>{user?.email || " "}</Text>
           </View>
         </View>
 
@@ -50,9 +47,7 @@ const router = useRouter();
             <Text style={styles.title}> Your phone number:</Text>
           </View>
           <View style={styles.input}>
-            <Text style={styles.text}>
-              {profileDetails.phone || " "}
-            </Text>
+            <Text style={styles.text}>{user?.phone || " "}</Text>
           </View>
         </View>
 
