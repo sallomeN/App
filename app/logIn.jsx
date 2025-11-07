@@ -12,7 +12,6 @@ import * as Yup from "yup";
 import { useProfileContext } from "../context/profile/profile.context";
 import { useRouter } from "expo-router";
 
-
 const LoginSchema = Yup.object().shape({
   email: Yup.string()
     .email("Invalid email format")
@@ -23,11 +22,11 @@ const LoginSchema = Yup.object().shape({
 });
 
 const LogIn = () => {
-  const { profileDetails, dispatch } = useProfileContext();
+  const { users, dispatch } = useProfileContext();
   const router = useRouter();
 
   const handleLogin = (values) => {
-    const user = profileDetails.users.find(
+    const user = users.find(
       (u) => u.email === values.email && u.password === values.password
     );
 

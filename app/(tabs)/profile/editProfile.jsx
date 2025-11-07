@@ -6,8 +6,8 @@ import {
   TextInput,
   ScrollView,
   KeyboardAvoidingView,
-  Platform,
 } from "react-native";
+import * as Yup from "yup";
 import React, { useState } from "react";
 import { phoneWidth } from "../../../constants/Dimensions";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
@@ -16,89 +16,116 @@ import Foundation from "@expo/vector-icons/Foundation";
 import Fontisto from "@expo/vector-icons/Fontisto";
 import { useProfileContext } from "../../../context/profile/profile.context";
 import { useRouter } from "expo-router";
+import { Formik } from "formik";
+
+const profileSchema = Yup.object().shape({
+  name: Yup.string()
+    .required("Enter your name")
+    .min(3, "Enter at least 3 characters"),
+  lastName: Yup.string()
+    .required("Enter your last name")
+    .min(2, "Enter at least 2 characters"),
+  email: Yup.string()
+    .required("Email is required")
+    .email("Invalid email format"),
+  phone: Yup.string().required("Phone number is required"),
+});
 
 const editProfileScreen = () => {
-  const { profileDetails, dispatch } = useProfileContext();
+  const { currentUser, dispatch } = useProfileContext();
   const router = useRouter();
 
-  const [name, setName] = useState(profileDetails.currentUser?.name || "");
-  const [lastName, setLastName] = useState(profileDetails.currentUser?.lastName || "");
-  const [email, setEmail] = useState(profileDetails.currentUser?.email || "");
-  const [phone, setPhone] = useState(profileDetails.currentUser?.phone || "");
-
-const saveChanges = () => {
-  const updatedUser = {
-    ...profileDetails.currentUser,
-    name,
-    lastName,
-    email,
-    phone,
-  };
-
-  dispatch({ type: "UPDATE_PROFILE", payload: updatedUser });
-  router.push("/profile");
-};
   return (
     // <KeyboardAvoidingView>
     //   <ScrollView>
-    <View style={styles.container}>
-      <View style={styles.infoBox}>
-        <View style={styles.iconAndNameBox}>
-          <View>
-            <FontAwesome name="user-circle-o" size={90} color="black" />
-          </View>
-          <View style={{ gap: 10 }}>
-            <TextInput
-              style={styles.input}
-              placeholder="Enter your name"
-              placeholderTextColor="#FFC1CC"
-              value={name}
-              onChangeText={setName}
-            />
+    <Formik
+      initialValues={{
+        name: currentUser?.name || "",
+        lastName: currentUser?.lastName || "",
+        email: currentUser?.email || "",
+        phone: currentUser?.phone || "",
+      }}
+      validationSchema={profileSchema}
+      onSubmit={(values) => {
+        const updatedUser = { ...currentUser, ...values };
+        dispatch({ type: "UPDATE_PROFILE", payload: updatedUser });
+        router.push("/profile");
+      }}
+    >
+      {({ handleChange, handleSubmit, values, errors, touched }) => (
+        <View style={styles.container}>
+          <View style={styles.infoBox}>
+            <View style={styles.iconAndNameBox}>
+              <View>
+                <FontAwesome name="user-circle-o" size={90} color="black" />
+              </View>
+              <View style={{ gap: 10 }}>
+                <TextInput
+                  style={styles.input}
+                  placeholder="Enter your name"
+                  placeholderTextColor="#FFC1CC"
+                  value={values.name}
+                  onChangeText={handleChange("name")}
+                />
+                {errors.name && (
+                  <Text style={styles.errorText}>{errors.name}</Text>
+                )}
 
-            <TextInput
-              style={styles.input}
-              placeholder="Enter your last name"
-              placeholderTextColor="#FFC1CC"
-              value={lastName}
-              onChangeText={setLastName}
-            />
+                <TextInput
+                  style={styles.input}
+                  placeholder="Enter your last name"
+                  placeholderTextColor="#FFC1CC"
+                  value={values.lastName}
+                  onChangeText={handleChange("lastName")}
+                />
+                {errors.lastName && (
+                  <Text style={styles.errorText}>{errors.lastName}</Text>
+                )}
+              </View>
+            </View>
+            <View style={styles.emailBox}>
+              <View style={{ flexDirection: "row", alignItems: "center" }}>
+                <MaterialIcons name="email" size={24} color="black" />
+              </View>
+              <TextInput
+                style={styles.input}
+                placeholder="Enter your email"
+                placeholderTextColor="#FFC1CC"
+                value={values.email}
+                onChangeText={handleChange("email")}
+              />
+              {errors.email && (
+                <Text style={styles.errorText}>{errors.email}</Text>
+              )}
+            </View>
+
+            <View style={styles.phoneBox}>
+              <View style={{ flexDirection: "row", alignItems: "center" }}>
+                <Foundation name="telephone" size={24} color="black" />
+              </View>
+              <TextInput
+                style={styles.input}
+                placeholder="Enter your phone number"
+                placeholderTextColor="#FFC1CC"
+                value={values.phone}
+                onChangeText={handleChange("phone")}
+                keyboardType="phone-pad"
+              />
+              {errors.phone && (
+                <Text style={styles.errorText}>{errors.phone}</Text>
+              )}
+            </View>
+
+            <TouchableOpacity onPress={handleSubmit}>
+              <View style={styles.saveBtn}>
+                <Text style={styles.btnText}>Save Changes</Text>
+                <Fontisto name="save" size={24} color="white" />
+              </View>
+            </TouchableOpacity>
           </View>
         </View>
-        <View style={styles.emailBox}>
-          <View style={{ flexDirection: "row", alignItems: "center" }}>
-            <MaterialIcons name="email" size={24} color="black" />
-          </View>
-          <TextInput
-            style={styles.input}
-            placeholder="Enter your email"
-            placeholderTextColor="#FFC1CC"
-            value={email}
-            onChangeText={setEmail}
-          />
-        </View>
-
-        <View style={styles.phoneBox}>
-          <View style={{ flexDirection: "row", alignItems: "center" }}>
-            <Foundation name="telephone" size={24} color="black" />
-          </View>
-          <TextInput
-            style={styles.input}
-            placeholder="Enter your phone number"
-            placeholderTextColor="#FFC1CC"
-            value={phone}
-            onChangeText={setPhone}
-          />
-        </View>
-
-        <TouchableOpacity onPress={saveChanges}>
-          <View style={styles.saveBtn}>
-            <Text style={styles.btnText}>Save Changes</Text>
-            <Fontisto name="save" size={24} color="white" />
-          </View>
-        </TouchableOpacity>
-      </View>
-    </View>
+      )}
+    </Formik>
     //   </ScrollView>
     // </KeyboardAvoidingView>
   );
@@ -135,6 +162,7 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 18,
     fontWeight: "600",
+    maxWidth: "100%",
   },
   phoneBox: {
     marginTop: 40,
@@ -156,6 +184,12 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "700",
     color: "white",
+  },
+  errorText: {
+    color: "red",
+    fontSize: 14,
+    marginTop: 5,
+    marginLeft: 5,
   },
 });
 export default editProfileScreen;
