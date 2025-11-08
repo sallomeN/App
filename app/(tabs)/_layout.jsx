@@ -1,7 +1,7 @@
 import { Tabs } from "expo-router";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
-import AntDesign from "@expo/vector-icons/AntDesign";
+import FontAwesome from "@expo/vector-icons/FontAwesome";
 
 export default function TabsLayout() {
   return (
@@ -20,11 +20,11 @@ export default function TabsLayout() {
           tabBarStyle: {
             height: 60,
             paddingTop: 5,
-            backgroundColor: "#FF2D87",
+            backgroundColor: "#F0F8FF",
             borderTopColor: "transparent",
           },
           tabBarIcon: () => (
-            <MaterialIcons name="phone-iphone" size={30} color="white" />
+            <MaterialIcons name="phone-iphone" size={30} color="black" />
           ),
         }}
       />
@@ -35,11 +35,11 @@ export default function TabsLayout() {
           tabBarStyle: {
             height: 60,
             paddingTop: 5,
-            backgroundColor: "#FF4500",
+            backgroundColor: "#C0C0C0",
             borderTopColor: "transparent",
           },
           tabBarIcon: () => (
-            <FontAwesome5 name="laptop" size={24} color="white" />
+            <FontAwesome5 name="laptop" size={24} color="black" />
           ),
         }}
       />
@@ -50,12 +50,10 @@ export default function TabsLayout() {
           tabBarStyle: {
             height: 60,
             paddingTop: 5,
-            backgroundColor: "black",
+            backgroundColor: "#D3D3D3",
             borderTopColor: "transparent",
           },
-          tabBarIcon: () => (
-            <AntDesign name="profile" size={28} color="white" />
-          ),
+          tabBarIcon: () => <FontAwesome name="user" size={28} color="black" />,
         }}
       />
     </Tabs>

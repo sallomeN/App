@@ -6,13 +6,13 @@ export default function PhonesLayout() {
       <Stack.Screen
         name="index"
         options={{
-          title: "Phones 📱",
+          title: "Phones",
           headerStyle: {
-            backgroundColor: "#FF2D87",
+            backgroundColor: "#F0F8FF",
           },
           headerTitleStyle: {
             fontWeight: "bold",
-            color: "white",
+            color: "black",
           },
         }}
       />
@@ -20,8 +20,8 @@ export default function PhonesLayout() {
         name="[id]"
         options={{
           title: "Phone Details",
-          headerStyle: { backgroundColor: "#FF2D87" },
-          headerTitleStyle: { color: "white", fontWeight: "bold" },
+          headerStyle: { backgroundColor: "#F0F8FF" },
+          headerTitleStyle: { color: "black", fontWeight: "bold" },
           headerBackVisible: false,
         }}
       />

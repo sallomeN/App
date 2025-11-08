@@ -8,12 +8,12 @@ const laptops = [
   {
     id: "1",
     name: "MacBook Air",
-    price: "$1199 !!",
+    price: "$1199",
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat rem deleniti illo!",
     background: "#1B1B1B",
     nameColor: "white",
-    linkColor: "#FF4500",
+    linkColor: "white",
   },
   {
     id: "2",
@@ -22,8 +22,8 @@ const laptops = [
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat rem deleniti illo!",
     background: "#1B1B1B",
-    nameColor: "#FF7F50",
-    linkColor: "#FF4500",
+    nameColor: "white",
+    linkColor: "white",
   },
   {
     id: "3",
@@ -32,8 +32,8 @@ const laptops = [
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat rem deleniti illo!",
     background: "#1B1B1B",
-    nameColor: "#FF6F61",
-    linkColor: "#FF4500",
+    nameColor: "white",
+    linkColor: "white",
   },
   {
     id: "4",
@@ -43,7 +43,7 @@ const laptops = [
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat rem deleniti illo!",
     background: "#1B1B1B",
     nameColor: "white",
-    linkColor: "#FF4500",
+    linkColor: "white",
   },
   {
     id: "5",
@@ -52,8 +52,8 @@ const laptops = [
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat rem deleniti illo!",
     background: "#1B1B1B",
-    nameColor: "#8B0000",
-    linkColor: "#FF4500",
+    nameColor: "white",
+    linkColor: "white",
   },
   {
     id: "6",
@@ -62,8 +62,8 @@ const laptops = [
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore, molestiae.",
     background: "#1B1B1B",
-    nameColor: "#B22222",
-    linkColor: "#FF4500",
+    nameColor: "white",
+    linkColor: "white",
   },
   {
     id: "7",
@@ -73,7 +73,7 @@ const laptops = [
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat rem deleniti illo!",
     background: "#1B1B1B",
     nameColor: "white",
-    linkColor: "#FF4500",
+    linkColor: "white",
   },
 ];
 
@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
     flex: 1,
     width: phoneWidth,
     paddingHorizontal: 15,
-    backgroundColor: "#FF4500",
+    backgroundColor: "#C0C0C0",
   },
   linkText: {
     fontSize: 18,

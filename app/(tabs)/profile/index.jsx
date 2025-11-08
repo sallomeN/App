@@ -65,14 +65,14 @@ const styles = StyleSheet.create({
     flex: 1,
     width: phoneWidth,
     paddingHorizontal: 15,
-    backgroundColor: "black",
+    backgroundColor: "#D3D3D3",
   },
   infoBox: {
-    marginTop: 20,
+    marginTop: 30,
     padding: 20,
     borderRadius: 20,
-    backgroundColor: "#FFEA00",
-    height: "90%",
+    backgroundColor: "white",
+    minHeight: "90%",
   },
   iconAndNameBox: {
     flexDirection: "row",
@@ -80,18 +80,18 @@ const styles = StyleSheet.create({
     gap: 15,
   },
   name: {
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: "700",
   },
   nameTitle: {
-    fontSize: 22,
+    fontSize: 18,
   },
   emailBox: {
     marginTop: 50,
     gap: 10,
   },
   title: {
-    fontSize: 22,
+    fontSize: 18,
   },
   input: {
     borderRadius: 15,
@@ -101,27 +101,24 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
   },
   text: {
-    color: "#FFEA00",
-    fontSize: 20,
+    color: "white",
+    fontSize: 18,
   },
   phoneBox: {
     marginTop: 50,
     gap: 10,
   },
   editBtn: {
-    marginTop: 60,
+    marginTop: 70,
     flexDirection: "row",
-    justifyContent: "center",
+    justifyContent: "flex-start",
     alignItems: "center",
     gap: 3,
-    padding: 10,
     width: "55%",
-    borderRadius: 15,
-    borderWidth: 5,
   },
-  btnText :{
+  btnText: {
     fontSize: 18,
     fontWeight: "700",
-  }
+  },
 });
 export default ProfileScreen;

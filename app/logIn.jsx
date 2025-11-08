@@ -6,6 +6,8 @@ import {
   TouchableOpacity,
   StyleSheet,
   Alert,
+  KeyboardAvoidingView,
+  Platform,
 } from "react-native";
 import { Formik } from "formik";
 import * as Yup from "yup";
@@ -39,73 +41,79 @@ const LogIn = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Log in</Text>
-      <Formik
-        initialValues={{ email: "", password: "" }}
-        validationSchema={LoginSchema}
-        onSubmit={handleLogin}
-      >
-        {({ handleChange, handleSubmit, values, errors, touched }) => (
-          <>
-            <TextInput
-              placeholder="Email"
-              value={values.email}
-              onChangeText={handleChange("email")}
-              style={styles.input}
-              keyboardType="email-address"
-            />
-            {touched.email && errors.email && (
-              <Text style={styles.error}>{errors.email}</Text>
-            )}
+    <KeyboardAvoidingView
+      style={{ flex: 1 }}
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      keyboardVerticalOffset={Platform.OS === "ios" ? 20 : 0}
+    >
+      <View style={styles.container}>
+        <Text style={styles.title}>Sign in</Text>
+        <Formik
+          initialValues={{ email: "", password: "" }}
+          validationSchema={LoginSchema}
+          onSubmit={handleLogin}
+        >
+          {({ handleChange, handleSubmit, values, errors, touched }) => (
+            <>
+              <TextInput
+                placeholder="Email"
+                value={values.email}
+                onChangeText={handleChange("email")}
+                style={styles.input}
+                keyboardType="email-address"
+              />
+              {touched.email && errors.email && (
+                <Text style={styles.error}>{errors.email}</Text>
+              )}
 
-            <TextInput
-              placeholder="Password"
-              value={values.password}
-              onChangeText={handleChange("password")}
-              style={styles.input}
-              secureTextEntry
-            />
-            {touched.password && errors.password && (
-              <Text style={styles.error}>{errors.password}</Text>
-            )}
+              <TextInput
+                placeholder="Password"
+                value={values.password}
+                onChangeText={handleChange("password")}
+                style={styles.input}
+                secureTextEntry
+              />
+              {touched.password && errors.password && (
+                <Text style={styles.error}>{errors.password}</Text>
+              )}
 
-            <TouchableOpacity onPress={handleSubmit} style={styles.button}>
-              <Text style={styles.buttonText}>Log in</Text>
-            </TouchableOpacity>
+              <TouchableOpacity onPress={handleSubmit} style={styles.button}>
+                <Text style={styles.buttonText}>Sign in</Text>
+              </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => router.push("/register")}>
-              <Text style={styles.link}>Don’t have an account? Register</Text>
-            </TouchableOpacity>
-          </>
-        )}
-      </Formik>
-    </View>
+              <TouchableOpacity onPress={() => router.push("/register")}>
+                <Text style={styles.link}>Don’t have an account? Sign up!</Text>
+              </TouchableOpacity>
+            </>
+          )}
+        </Formik>
+      </View>
+    </KeyboardAvoidingView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#000",
+    backgroundColor: "white",
     padding: 20,
     justifyContent: "center",
   },
   title: {
     fontSize: 32,
-    color: "#FFEA00",
+    color: "black",
     fontWeight: "bold",
     textAlign: "center",
     marginBottom: 20,
   },
   input: {
-    backgroundColor: "#FFEA00",
+    backgroundColor: "#F0F8FF",
     marginBottom: 10,
     borderRadius: 10,
     padding: 10,
   },
   button: {
-    backgroundColor: "#FFEA00",
+    backgroundColor: "#F0F8FF",
     padding: 15,
     borderRadius: 10,
     marginTop: 10,
@@ -115,7 +123,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   link: {
-    color: "#FFEA00",
+    color: "#87CEFA",
     textAlign: "center",
     marginTop: 20,
   },

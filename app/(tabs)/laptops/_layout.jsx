@@ -6,13 +6,13 @@ export default function LaptopsLayout() {
       <Stack.Screen
         name="index"
         options={{
-          title: "Laptops 💻",
+          title: "Laptops",
           headerStyle: {
-            backgroundColor: "#FF4500",
+            backgroundColor: "#C0C0C0",
           },
           headerTitleStyle: {
             fontWeight: "bold",
-            color: "white",
+            color: "black",
           },
         }}
       />
@@ -20,8 +20,8 @@ export default function LaptopsLayout() {
         name="[id]"
         options={{
           title: "Laptop Details",
-          headerStyle: { backgroundColor: "#FF4500" },
-          headerTitleStyle: { color: "white", fontWeight: "bold" },
+          headerStyle: { backgroundColor: "#C0C0C0" },
+          headerTitleStyle: { color: "#1B1B1B", fontWeight: "bold" },
           headerBackVisible: false,
         }}
       />

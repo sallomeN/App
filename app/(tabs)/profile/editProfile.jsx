@@ -4,8 +4,8 @@ import {
   Text,
   TouchableOpacity,
   TextInput,
-  ScrollView,
   KeyboardAvoidingView,
+  Platform,
 } from "react-native";
 import * as Yup from "yup";
 import React, { useState } from "react";
@@ -36,8 +36,12 @@ const editProfileScreen = () => {
   const router = useRouter();
 
   return (
-    // <KeyboardAvoidingView>
-    //   <ScrollView>
+
+    <KeyboardAvoidingView
+      style={{ flex: 1 }}
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      keyboardVerticalOffset={Platform.OS === "ios" ? 60 : 0}
+    >
     <Formik
       initialValues={{
         name: currentUser?.name || "",
@@ -52,18 +56,19 @@ const editProfileScreen = () => {
         router.push("/profile");
       }}
     >
-      {({ handleChange, handleSubmit, values, errors, touched }) => (
+      {({ handleChange, handleSubmit, values, errors }) => (
+        
         <View style={styles.container}>
           <View style={styles.infoBox}>
             <View style={styles.iconAndNameBox}>
               <View>
-                <FontAwesome name="user-circle-o" size={90} color="black" />
+                <FontAwesome name="user-circle-o" size={90} color="#D3D3D3" />
               </View>
               <View style={{ gap: 10 }}>
                 <TextInput
                   style={styles.input}
                   placeholder="Enter your name"
-                  placeholderTextColor="#FFC1CC"
+                  placeholderTextColor="black"
                   value={values.name}
                   onChangeText={handleChange("name")}
                 />
@@ -74,7 +79,7 @@ const editProfileScreen = () => {
                 <TextInput
                   style={styles.input}
                   placeholder="Enter your last name"
-                  placeholderTextColor="#FFC1CC"
+                  placeholderTextColor="black"
                   value={values.lastName}
                   onChangeText={handleChange("lastName")}
                 />
@@ -85,12 +90,12 @@ const editProfileScreen = () => {
             </View>
             <View style={styles.emailBox}>
               <View style={{ flexDirection: "row", alignItems: "center" }}>
-                <MaterialIcons name="email" size={24} color="black" />
+                <MaterialIcons name="email" size={24} color="#D3D3D3" />
               </View>
               <TextInput
                 style={styles.input}
                 placeholder="Enter your email"
-                placeholderTextColor="#FFC1CC"
+                placeholderTextColor="black"
                 value={values.email}
                 onChangeText={handleChange("email")}
               />
@@ -101,12 +106,12 @@ const editProfileScreen = () => {
 
             <View style={styles.phoneBox}>
               <View style={{ flexDirection: "row", alignItems: "center" }}>
-                <Foundation name="telephone" size={24} color="black" />
+                <Foundation name="telephone" size={24} color="#D3D3D3" />
               </View>
               <TextInput
                 style={styles.input}
                 placeholder="Enter your phone number"
-                placeholderTextColor="#FFC1CC"
+                placeholderTextColor="black"
                 value={values.phone}
                 onChangeText={handleChange("phone")}
                 keyboardType="phone-pad"
@@ -119,15 +124,14 @@ const editProfileScreen = () => {
             <TouchableOpacity onPress={handleSubmit}>
               <View style={styles.saveBtn}>
                 <Text style={styles.btnText}>Save Changes</Text>
-                <Fontisto name="save" size={24} color="white" />
+                <Fontisto name="save" size={24} color="black" />
               </View>
             </TouchableOpacity>
           </View>
         </View>
       )}
     </Formik>
-    //   </ScrollView>
-    // </KeyboardAvoidingView>
+    </KeyboardAvoidingView>
   );
 };
 const styles = StyleSheet.create({
@@ -135,14 +139,14 @@ const styles = StyleSheet.create({
     flex: 1,
     width: phoneWidth,
     paddingHorizontal: 15,
-    backgroundColor: "black",
+    backgroundColor: "#D3D3D3",
   },
   infoBox: {
     marginTop: 20,
     padding: 20,
     borderRadius: 20,
-    backgroundColor: "#FFC1CC",
-    height: "90%",
+    backgroundColor: "black",
+    minHeight: "90%",
   },
   iconAndNameBox: {
     flexDirection: "row",
@@ -157,10 +161,10 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     padding: 10,
     paddingVertical: 15,
-    backgroundColor: "black",
+    backgroundColor: "#D3D3D3",
     alignItems: "flex-start",
-    color: "white",
-    fontSize: 18,
+    color: "black",
+    fontSize: 14,
     fontWeight: "600",
     maxWidth: "100%",
   },
@@ -175,15 +179,15 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: 3,
     padding: 10,
-    paddingVertical: 15,
+    paddingVertical: 13,
     width: "55%",
     borderRadius: 15,
-    backgroundColor: "black",
+    backgroundColor: "#D3D3D3",
   },
   btnText: {
-    fontSize: 18,
+    fontSize: 14,
     fontWeight: "700",
-    color: "white",
+    color: "black",
   },
   errorText: {
     color: "red",

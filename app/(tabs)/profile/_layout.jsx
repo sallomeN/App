@@ -6,13 +6,13 @@ export default function ProfileLayout() {
       <Stack.Screen
         name="index"
         options={{
-          title: "Your profile 👤",
+          title: "Your profile",
           headerStyle: {
-            backgroundColor: "black",
+            backgroundColor: "#D3D3D3",
           },
           headerTitleStyle: {
             fontWeight: "bold",
-            color: "white",
+            color: "black",
           },
           headerBackVisible: false,
         }}
@@ -21,8 +21,8 @@ export default function ProfileLayout() {
         name="editProfile"
         options={{
           title: "Edit Profile",
-          headerStyle: { backgroundColor: "black" },
-          headerTitleStyle: { color: "white", fontWeight: "bold" },
+          headerStyle: { backgroundColor: "#D3D3D3" },
+          headerTitleStyle: { color: "black", fontWeight: "bold" },
           headerBackVisible: false,
         }}
       />

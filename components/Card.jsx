@@ -18,7 +18,7 @@ export function Card({
       <View style={styles.linkBox}>
         <TouchableOpacity onPress={onPress}>
           <Text style={[styles.linkText, { color: linkColor }]}>
-            👉 View details
+            View details
           </Text>
         </TouchableOpacity>
       </View>
@@ -49,13 +49,13 @@ const styles = StyleSheet.create({
   },
   linkBox: {
     marginTop: 15,
-    paddingVertical:15,
+    paddingVertical:5,
     borderStyle: "solid",
     borderColor: "white",
-    borderWidth: 4,
+    // borderWidth: 4,
     borderRadius: 10,
     width: "55%",
-    alignItems: "center",
+    alignItems: "flex-start",
   },
   linkText: {
     fontSize: 17,

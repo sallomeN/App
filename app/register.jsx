@@ -5,19 +5,22 @@ import {
   TextInput,
   TouchableOpacity,
   StyleSheet,
+  KeyboardAvoidingView,
+  Platform,
 } from "react-native";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { useProfileContext } from "../context/profile/profile.context";
 import { useRouter } from "expo-router";
 
-
 const RegisterSchema = Yup.object().shape({
-  name: Yup.string().required("Name is required"),
-  lastName: Yup.string().required("Last name is required"),
+  name: Yup.string().required("Name is required").min(3),
+  lastName: Yup.string().required("Last name is required").min(3),
   email: Yup.string().email("Invalid email").required("Email is required"),
   phone: Yup.string().required("Phone is required"),
-  password: Yup.string().min(6, "Password must be at least 6 characters").required("Password is required"),
+  password: Yup.string()
+    .min(6, "Password must be at least 6 characters")
+    .required("Password is required"),
 });
 
 const Register = () => {
@@ -25,113 +28,121 @@ const Register = () => {
   const router = useRouter();
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Register</Text>
-      <Formik
-        initialValues={{
-          name: "",
-          lastName: "",
-          email: "",
-          phone: "",
-          password: "",
-        }}
-        validationSchema={RegisterSchema}
-        onSubmit={(values) => {
-          dispatch({ type: "REGISTER", payload: values });
-          router.push("/logIn");
-        }}
-      >
-        {({ handleChange, handleSubmit, values, errors, touched }) => (
-          <>
-            <TextInput
-              placeholder="Name"
-              value={values.name}
-              onChangeText={handleChange("name")}
-              style={styles.input}
-            />
-            {touched.name && errors.name && (
-              <Text style={styles.error}>{errors.name}</Text>
-            )}
+    <KeyboardAvoidingView
+      style={{ flex: 1 }}
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      keyboardVerticalOffset={Platform.OS === "ios" ? 20 : 0}
+    >
+      <View style={styles.container}>
+        <Text style={styles.title}>Sign up!</Text>
+        <Formik
+          initialValues={{
+            name: "",
+            lastName: "",
+            email: "",
+            phone: "",
+            password: "",
+          }}
+          validationSchema={RegisterSchema}
+          onSubmit={(values) => {
+            dispatch({ type: "REGISTER", payload: values });
+            router.push("/logIn");
+          }}
+        >
+          {({ handleChange, handleSubmit, values, errors, touched }) => (
+            <>
+              <TextInput
+                placeholder="Name"
+                value={values.name}
+                onChangeText={handleChange("name")}
+                style={styles.input}
+              />
+              {touched.name && errors.name && (
+                <Text style={styles.error}>{errors.name}</Text>
+              )}
 
-            <TextInput
-              placeholder="Last Name"
-              value={values.lastName}
-              onChangeText={handleChange("lastName")}
-              style={styles.input}
-            />
-            {touched.lastName && errors.lastName && (
-              <Text style={styles.error}>{errors.lastName}</Text>
-            )}
+              <TextInput
+                placeholder="Last Name"
+                value={values.lastName}
+                onChangeText={handleChange("lastName")}
+                style={styles.input}
+              />
+              {touched.lastName && errors.lastName && (
+                <Text style={styles.error}>{errors.lastName}</Text>
+              )}
 
-            <TextInput
-              placeholder="Email"
-              value={values.email}
-              onChangeText={handleChange("email")}
-              style={styles.input}
-              keyboardType="email-address"
-            />
-            {touched.email && errors.email && (
-              <Text style={styles.error}>{errors.email}</Text>
-            )}
+              <TextInput
+                placeholder="Email"
+                value={values.email}
+                onChangeText={handleChange("email")}
+                style={styles.input}
+                keyboardType="email-address"
+              />
+              {touched.email && errors.email && (
+                <Text style={styles.error}>{errors.email}</Text>
+              )}
 
-            <TextInput
-              placeholder="Phone"
-              value={values.phone}
-              onChangeText={handleChange("phone")}
-              style={styles.input}
-              keyboardType="phone-pad"
-            />
-            {touched.phone && errors.phone && (
-              <Text style={styles.error}>{errors.phone}</Text>
-            )}
+              <TextInput
+                placeholder="Phone"
+                value={values.phone}
+                onChangeText={handleChange("phone")}
+                style={styles.input}
+                keyboardType="phone-pad"
+              />
+              {touched.phone && errors.phone && (
+                <Text style={styles.error}>{errors.phone}</Text>
+              )}
 
-            <TextInput
-              placeholder="Password"
-              value={values.password}
-              onChangeText={handleChange("password")}
-              style={styles.input}
-              secureTextEntry
-            />
-            {touched.password && errors.password && (
-              <Text style={styles.error}>{errors.password}</Text>
-            )}
+              <TextInput
+                placeholder="Password"
+                value={values.password}
+                onChangeText={handleChange("password")}
+                style={styles.input}
+                secureTextEntry
+              />
+              {touched.password && errors.password && (
+                <Text style={styles.error}>{errors.password}</Text>
+              )}
 
-            <TouchableOpacity onPress={handleSubmit} style={styles.button}>
-              <Text style={styles.buttonText}>Create Account</Text>
-            </TouchableOpacity>
+              <TouchableOpacity onPress={handleSubmit} style={styles.button}>
+                <Text style={styles.buttonText}>Create Account</Text>
+              </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => router.push("/logIn")}>
-              <Text style={styles.link}>Already have an account? Login</Text>
-            </TouchableOpacity>
-          </>
-        )}
-      </Formik>
-    </View>
+              <TouchableOpacity onPress={() => router.push("/logIn")}>
+                <Text style={styles.link}>
+                  Already have an account? Sign in!
+                </Text>
+              </TouchableOpacity>
+            </>
+          )}
+        </Formik>
+      </View>
+    </KeyboardAvoidingView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#000",
+    backgroundColor: "white",
     padding: 20,
     justifyContent: "center",
   },
   title: {
     fontSize: 32,
-    color: "#FFEA00",
+    color: "black",
     fontWeight: "bold",
     textAlign: "center",
     marginBottom: 20,
   },
   input: {
-    backgroundColor: "#FFEA00",
+    backgroundColor: "#E6E6FA",
     marginBottom: 10,
     borderRadius: 10,
     padding: 10,
   },
   button: {
-    backgroundColor: "#FFEA00",
+    backgroundColor: "#E6E6FA",
     padding: 15,
     borderRadius: 10,
     marginTop: 10,
@@ -141,7 +152,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   link: {
-    color: "#FFEA00",
+    color: "#C8C8F0",
     textAlign: "center",
     marginTop: 20,
   },

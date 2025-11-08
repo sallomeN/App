@@ -14,7 +14,7 @@ const phones = [
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat rem deleniti illo!",
     background: "black",
     nameColor: "white",
-    linkColor: "#FF2D87",
+    linkColor: "#F0F8FF",
   },
   {
     id: "2",
@@ -24,7 +24,7 @@ const phones = [
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat rem deleniti illo!",
     background: "black",
     nameColor: "white",
-    linkColor: "#FF2D87",
+    linkColor: "#F0F8FF",
   },
   {
     id: "3",
@@ -34,7 +34,7 @@ const phones = [
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat rem deleniti illo!",
     background: "black",
     nameColor: "white",
-    linkColor: "#FF2D87",
+    linkColor: "#F0F8FF",
   },
   {
     id: "4",
@@ -44,7 +44,7 @@ const phones = [
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat rem deleniti illo!",
     background: "black",
     nameColor: "white",
-    linkColor: "#FF2D87",
+    linkColor: "#F0F8FF",
   },
   {
     id: "5",
@@ -54,7 +54,7 @@ const phones = [
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat, perspiciatis explicabo.",
     background: "black",
     nameColor: "white",
-    linkColor: "#FF2D87",
+    linkColor: "#F0F8FF",
   },
   {
     id: "6",
@@ -64,7 +64,7 @@ const phones = [
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat rem deleniti illo!",
     background: "black",
     nameColor: "white",
-    linkColor: "#FF2D87",
+    linkColor: "#F0F8FF",
   },
   {
     id: "7",
@@ -74,7 +74,7 @@ const phones = [
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat rem deleniti illo!",
     background: "black",
     nameColor: "white",
-    linkColor: "#FF2D87",
+    linkColor: "#F0F8FF",
   },
 ];
 
@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
     flex: 1,
     width: phoneWidth,
     paddingHorizontal: 15,
-    backgroundColor: "#FF2D87",
+    backgroundColor: "#F0F8FF",
   },
   linkText: {
     fontSize: 18,

@@ -11,7 +11,7 @@ const phones = [
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat rem deleniti illo!",
     background: "black",
     nameColor: "white",
-    linkColor: "#FF2D87",
+    linkColor: "#F0F8FF",
   },
   {
     id: "2",
@@ -21,7 +21,7 @@ const phones = [
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat rem deleniti illo!",
     background: "black",
     nameColor: "white",
-    linkColor: "#FF2D87",
+    linkColor: "#F0F8FF",
   },
   {
     id: "3",
@@ -31,7 +31,7 @@ const phones = [
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat rem deleniti illo!",
     background: "black",
     nameColor: "white",
-    linkColor: "#FF2D87",
+    linkColor: "#F0F8FF",
   },
   {
     id: "4",
@@ -41,7 +41,7 @@ const phones = [
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat rem deleniti illo!",
     background: "black",
     nameColor: "white",
-    linkColor: "#FF2D87",
+    linkColor: "#F0F8FF",
   },
   {
     id: "5",
@@ -51,7 +51,7 @@ const phones = [
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat, perspiciatis explicabo.",
     background: "black",
     nameColor: "white",
-    linkColor: "#FF2D87",
+    linkColor: "#F0F8FF",
   },
   {
     id: "6",
@@ -61,7 +61,7 @@ const phones = [
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat rem deleniti illo!",
     background: "black",
     nameColor: "white",
-    linkColor: "#FF2D87",
+    linkColor: "#F0F8FF",
   },
   {
     id: "7",
@@ -71,7 +71,7 @@ const phones = [
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat rem deleniti illo!",
     background: "black",
     nameColor: "white",
-    linkColor: "#FF2D87",
+    linkColor: "#F0F8FF",
   },
 ];
 
@@ -99,16 +99,16 @@ export default function PhoneDetails() {
             style={styles.backButton}
             onPress={() => router.back()}
           >
-            <Text style={styles.backText}>⬅️ Go Back</Text>
+            <Text style={styles.backText}>Go Back</Text>
           </TouchableOpacity>
         )}
 
-        <TouchableOpacity
+        {/* <TouchableOpacity
           style={styles.backButton}
           onPress={() => router.push("/10")}
         >
           <Text style={styles.backText}>Go to wrong screen</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </SafeAreaView>
     </SafeAreaProvider>
   );
@@ -117,33 +117,33 @@ export default function PhoneDetails() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#FF2D87",
+    backgroundColor: "#F0F8FF",
     padding: 20,
   },
   title: {
-    color: "white",
+    color: "black",
     fontSize: 28,
     fontWeight: "bold",
   },
   price: {
-    color: "#FFD700",
+    color: "red",
     fontSize: 22,
     marginVertical: 10,
   },
   description: {
-    color: "white",
+    color: "black",
     fontSize: 18,
   },
   backButton: {
     marginTop: 30,
-    borderColor: "white",
+    borderColor: "black",
     borderWidth: 2,
     padding: 10,
     borderRadius: 10,
     alignSelf: "flex-start",
   },
   backText: {
-    color: "white",
+    color: "black",
     fontSize: 18,
   },
 });
