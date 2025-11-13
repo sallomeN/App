@@ -13,6 +13,7 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import { useProfileContext } from "../context/profile/profile.context";
 import { useRouter } from "expo-router";
+import { saveData } from "../utils/AsyncStorage";
 
 const LoginSchema = Yup.object().shape({
   email: Yup.string()
@@ -27,13 +28,29 @@ const LogIn = () => {
   const { users, dispatch } = useProfileContext();
   const router = useRouter();
 
-  const handleLogin = (values) => {
+//   const handleLogin = (values) => {
+//     const user = users.find(
+//       (u) => u.email === values.email && u.password === values.password
+//     );
+
+//     if (user) {
+//       dispatch({ type: "LOGIN", payload: user });
+//       router.push("/(tabs)");
+//     } else {
+//       Alert.alert("Login failed", "Invalid email or password");
+//     }
+//   };
+
+const handleLogin = async (values) => {
     const user = users.find(
       (u) => u.email === values.email && u.password === values.password
     );
 
     if (user) {
       dispatch({ type: "LOGIN", payload: user });
+
+      await saveData("currentUser", user);
+
       router.push("/(tabs)");
     } else {
       Alert.alert("Login failed", "Invalid email or password");
@@ -53,13 +70,14 @@ const LogIn = () => {
           validationSchema={LoginSchema}
           onSubmit={handleLogin}
         >
-          {({ handleChange, handleSubmit, values, errors, touched }) => (
+          {({ handleChange, handleSubmit, values, errors, touched, handleBlur }) => (
             <>
               <TextInput
                 placeholder="Email"
                 value={values.email}
                 onChangeText={handleChange("email")}
                 style={styles.input}
+                onBlur={handleBlur("email")}
                 keyboardType="email-address"
               />
               {touched.email && errors.email && (
@@ -71,6 +89,7 @@ const LogIn = () => {
                 value={values.password}
                 onChangeText={handleChange("password")}
                 style={styles.input}
+                onBlur={handleBlur("password")}
                 secureTextEntry
               />
               {touched.password && errors.password && (

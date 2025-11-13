@@ -49,12 +49,13 @@ const Register = () => {
             router.push("/logIn");
           }}
         >
-          {({ handleChange, handleSubmit, values, errors, touched }) => (
+          {({ handleChange, handleSubmit, values, errors, touched, handleBlur }) => (
             <>
               <TextInput
                 placeholder="Name"
                 value={values.name}
                 onChangeText={handleChange("name")}
+                onBlur={handleBlur("name")}
                 style={styles.input}
               />
               {touched.name && errors.name && (
@@ -65,6 +66,7 @@ const Register = () => {
                 placeholder="Last Name"
                 value={values.lastName}
                 onChangeText={handleChange("lastName")}
+                onBlur={handleBlur("lastName")}
                 style={styles.input}
               />
               {touched.lastName && errors.lastName && (
@@ -76,6 +78,7 @@ const Register = () => {
                 value={values.email}
                 onChangeText={handleChange("email")}
                 style={styles.input}
+                onBlur={handleBlur("email")}
                 keyboardType="email-address"
               />
               {touched.email && errors.email && (
@@ -87,6 +90,7 @@ const Register = () => {
                 value={values.phone}
                 onChangeText={handleChange("phone")}
                 style={styles.input}
+                onBlur={handleBlur("phone")}
                 keyboardType="phone-pad"
               />
               {touched.phone && errors.phone && (
@@ -97,6 +101,7 @@ const Register = () => {
                 placeholder="Password"
                 value={values.password}
                 onChangeText={handleChange("password")}
+                onBlur={handleBlur("password")}
                 style={styles.input}
                 secureTextEntry
               />

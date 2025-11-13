@@ -56,7 +56,7 @@ const editProfileScreen = () => {
         router.push("/profile");
       }}
     >
-      {({ handleChange, handleSubmit, values, errors }) => (
+      {({ handleChange, handleSubmit, values, errors, handleBlur, touched }) => (
         
         <View style={styles.container}>
           <View style={styles.infoBox}>
@@ -71,21 +71,23 @@ const editProfileScreen = () => {
                   placeholderTextColor="black"
                   value={values.name}
                   onChangeText={handleChange("name")}
+                  onBlur={(handleBlur("name"))}
                 />
-                {errors.name && (
+                {touched.name && errors.name ? (
                   <Text style={styles.errorText}>{errors.name}</Text>
-                )}
+                ) : null}
 
                 <TextInput
                   style={styles.input}
                   placeholder="Enter your last name"
                   placeholderTextColor="black"
                   value={values.lastName}
+                  onBlur={handleBlur("lastName")}
                   onChangeText={handleChange("lastName")}
                 />
-                {errors.lastName && (
+                {touched.lastName && errors.lastName ? (
                   <Text style={styles.errorText}>{errors.lastName}</Text>
-                )}
+                ): null}
               </View>
             </View>
             <View style={styles.emailBox}>
@@ -97,11 +99,12 @@ const editProfileScreen = () => {
                 placeholder="Enter your email"
                 placeholderTextColor="black"
                 value={values.email}
+                onBlur={handleBlur("email")}
                 onChangeText={handleChange("email")}
               />
-              {errors.email && (
+              {touched.email && errors.email ? (
                 <Text style={styles.errorText}>{errors.email}</Text>
-              )}
+              ): null}
             </View>
 
             <View style={styles.phoneBox}>
@@ -113,12 +116,13 @@ const editProfileScreen = () => {
                 placeholder="Enter your phone number"
                 placeholderTextColor="black"
                 value={values.phone}
+                onBlur={handleBlur("phone")}
                 onChangeText={handleChange("phone")}
                 keyboardType="phone-pad"
               />
-              {errors.phone && (
+              {touched.phone && errors.phone ? (
                 <Text style={styles.errorText}>{errors.phone}</Text>
-              )}
+              ) : null}
             </View>
 
             <TouchableOpacity onPress={handleSubmit}>

@@ -7,11 +7,19 @@ import Foundation from "@expo/vector-icons/Foundation";
 import Entypo from "@expo/vector-icons/Entypo";
 import { useProfileContext } from "../../../context/profile/profile.context";
 import { useRouter } from "expo-router";
+import { removeData } from "../../../utils/AsyncStorage";
+
+
 
 const ProfileScreen = () => {
-const { currentUser } = useProfileContext();
+const { currentUser, dispatch } = useProfileContext();
 const router = useRouter();
 
+const handleLogout = async () => {
+  await removeData("currentUser"); 
+  dispatch({ type: "LOGOUT" }); 
+  router.replace("/logIn");
+};
   return (
     <View style={styles.container}>
       <View style={styles.infoBox}>
@@ -55,6 +63,10 @@ const router = useRouter();
             <Text style={styles.btnText}> Edit your info </Text>
             <Entypo name="edit" size={24} color="black" />
           </View>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
+          <Text style={styles.logoutText}>Logout</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -119,6 +131,20 @@ const styles = StyleSheet.create({
   btnText: {
     fontSize: 18,
     fontWeight: "700",
+  },
+  logoutButton: {
+    backgroundColor: "#ff4444",
+    padding: 12,
+    borderRadius: 8,
+    marginTop: 40,
+    width: "40%",
+   justifyContent: "center",
+   alignItems: "center",
+  },
+  logoutText: {
+    color: "white",
+    fontSize: 16,
+    fontWeight: "600",
   },
 });
 export default ProfileScreen;
