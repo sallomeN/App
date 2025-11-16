@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 
 export function Card({
   name,
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
   },
   linkBox: {
     marginTop: 15,
-    paddingVertical:5,
+    paddingVertical: 5,
     borderStyle: "solid",
     borderColor: "white",
     // borderWidth: 4,

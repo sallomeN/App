@@ -7,7 +7,7 @@ import Foundation from "@expo/vector-icons/Foundation";
 import Entypo from "@expo/vector-icons/Entypo";
 import { useProfileContext } from "../../../context/profile/profile.context";
 import { useRouter } from "expo-router";
-import { removeData } from "../../../utils/AsyncStorage";
+
 
 
 
@@ -15,8 +15,7 @@ const ProfileScreen = () => {
 const { currentUser, dispatch } = useProfileContext();
 const router = useRouter();
 
-const handleLogout = async () => {
-  await removeData("currentUser"); 
+const handleLogout = async () => { 
   dispatch({ type: "LOGOUT" }); 
   router.replace("/logIn");
 };

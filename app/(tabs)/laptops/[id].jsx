@@ -1,4 +1,4 @@
-import { Text, StyleSheet, TouchableOpacity } from "react-native";
+import { Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { useEffect } from "react";
@@ -12,6 +12,8 @@ const laptops = [
     background: "#1B1B1B",
     nameColor: "white",
     linkColor: "white",
+    imageUrl:
+      "https://atlas-content-cdn.pixelsquid.com/stock-images/macbook-air-gold-laptop-72rDZq8-600.jpg",
   },
   {
     id: "2",
@@ -22,6 +24,7 @@ const laptops = [
     background: "#1B1B1B",
     nameColor: "white",
     linkColor: "white",
+    imageUrl: "https://www.pngmart.com/files/6/Dell-Laptop-PNG-Pic.png",
   },
   {
     id: "3",
@@ -32,6 +35,8 @@ const laptops = [
     background: "#1B1B1B",
     nameColor: "white",
     linkColor: "white",
+    imageUrl:
+      "https://png.pngtree.com/png-vector/20240206/ourmid/pngtree-hp-laptop-white-background-png-image_11716727.png",
   },
   {
     id: "4",
@@ -42,6 +47,8 @@ const laptops = [
     background: "#1B1B1B",
     nameColor: "white",
     linkColor: "white",
+    imageUrl:
+      "https://crdms.images.consumerreports.org/f_auto,w_600/prod/products/cr/models/415628-15-to-16-inch-laptops-lenovo-ideapad-1i-10041384.png",
   },
   {
     id: "5",
@@ -52,6 +59,8 @@ const laptops = [
     background: "#1B1B1B",
     nameColor: "white",
     linkColor: "white",
+    imageUrl:
+      "https://atlas-content-cdn.pixelsquid.com/stock-images/asus-zenbook-pro-dual-screen-laptop-YeXXVaE-600.jpg",
   },
   {
     id: "6",
@@ -62,6 +71,8 @@ const laptops = [
     background: "#1B1B1B",
     nameColor: "white",
     linkColor: "white",
+    imageUrl:
+      "https://hnsgsfp.imgix.net/9/images/detailed/103/Acer-SFG14-73T-55BH-Laptop-1.PNG?fit=fill&bg=0FFF&w=1536&h=900&auto=format,compress",
   },
   {
     id: "7",
@@ -72,6 +83,8 @@ const laptops = [
     background: "#1B1B1B",
     nameColor: "white",
     linkColor: "white",
+    imageUrl:
+      "https://cdn-dynmedia-1.microsoft.com/is/image/microsoftcorp/13-laptop-color-center-render-fy25:VP4-1260x795?fmt=png-alpha",
   },
 ];
 
@@ -92,6 +105,7 @@ export default function PhoneDetails() {
     <SafeAreaProvider>
       <SafeAreaView style={styles.container}>
         <Text style={styles.title}>{name}</Text>
+        <Image source={{ uri: laptop?.imageUrl }} style={styles.productImg} />
         <Text style={styles.price}>{price}</Text>
         <Text style={styles.description}>{description}</Text>
 
@@ -146,5 +160,12 @@ const styles = StyleSheet.create({
   backText: {
     color: "#1B1B1B",
     fontSize: 18,
+  },
+  productImg: {
+    width: 260,
+    height: 260,
+    borderRadius: 20,
+    alignSelf: "left",
+    marginVertical: 20,
   },
 });

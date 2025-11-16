@@ -1,4 +1,4 @@
-import { Text, StyleSheet, TouchableOpacity } from "react-native";
+import { Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { useEffect } from "react";
@@ -12,6 +12,8 @@ const phones = [
     background: "black",
     nameColor: "white",
     linkColor: "#F0F8FF",
+    imageUrl:
+      "https://cdn.new-brz.net/app/public/models/MTP13HX-A/large/w/231108150054570863.webp",
   },
   {
     id: "2",
@@ -22,6 +24,8 @@ const phones = [
     background: "black",
     nameColor: "white",
     linkColor: "#F0F8FF",
+    imageUrl:
+      "https://fdn2.gsmarena.com/vv/pics/samsung/samsung-galaxy-a22-1.jpg",
   },
   {
     id: "3",
@@ -32,6 +36,8 @@ const phones = [
     background: "black",
     nameColor: "white",
     linkColor: "#F0F8FF",
+    imageUrl:
+      "https://fdn2.gsmarena.com/vv/pics/google/google-pixel-9-pro-1.jpg",
   },
   {
     id: "4",
@@ -42,6 +48,8 @@ const phones = [
     background: "black",
     nameColor: "white",
     linkColor: "#F0F8FF",
+    imageUrl:
+      "https://www.pngall.com/wp-content/uploads/8/Lenovo-PNG-High-Quality-Image.png",
   },
   {
     id: "5",
@@ -52,6 +60,8 @@ const phones = [
     background: "black",
     nameColor: "white",
     linkColor: "#F0F8FF",
+    imageUrl:
+      "https://www.mobilebd.co/wp-content/uploads/2021/05/Nokia-Edge-2020-Official-Image.png",
   },
   {
     id: "6",
@@ -62,6 +72,8 @@ const phones = [
     background: "black",
     nameColor: "white",
     linkColor: "#F0F8FF",
+    imageUrl:
+      "https://consumer.huawei.com/content/dam/huawei-cbg-site/common/mkt/pdp/admin-image/phones/nova-12s/list/blue.png",
   },
   {
     id: "7",
@@ -72,6 +84,8 @@ const phones = [
     background: "black",
     nameColor: "white",
     linkColor: "#F0F8FF",
+    imageUrl:
+      "https://image01.oneplus.net/media/202405/28/b96848b7acd10dafde32203d12f6fea7.png",
   },
 ];
 
@@ -91,6 +105,7 @@ export default function PhoneDetails() {
     <SafeAreaProvider>
       <SafeAreaView style={styles.container}>
         <Text style={styles.title}>{name}</Text>
+        <Image source={{ uri: phone?.imageUrl }} style={styles.productImg} />
         <Text style={styles.price}>{price}</Text>
         <Text style={styles.description}>{description}</Text>
 
@@ -145,5 +160,12 @@ const styles = StyleSheet.create({
   backText: {
     color: "black",
     fontSize: 18,
+  },
+  productImg: {
+    width: 260,
+    height: 260,
+    borderRadius: 20,
+    alignSelf: "left",
+    marginVertical: 20,
   },
 });
