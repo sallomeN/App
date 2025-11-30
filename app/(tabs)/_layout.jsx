@@ -2,6 +2,8 @@ import { Tabs } from "expo-router";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
+import { Platform } from "react-native";
+
 
 export default function TabsLayout() {
   return (
@@ -21,6 +23,7 @@ export default function TabsLayout() {
             height: 60,
             paddingTop: 5,
             backgroundColor: "#F0F8FF",
+            paddingBottom: Platform.OS === "android" ? 80 : 0,
             borderTopColor: "transparent",
           },
           tabBarIcon: () => (
@@ -36,6 +39,7 @@ export default function TabsLayout() {
             height: 60,
             paddingTop: 5,
             backgroundColor: "#C0C0C0",
+            paddingBottom: Platform.OS === "android" ? 80 : 0,
             borderTopColor: "transparent",
           },
           tabBarIcon: () => (
@@ -51,6 +55,7 @@ export default function TabsLayout() {
             height: 60,
             paddingTop: 5,
             backgroundColor: "#D3D3D3",
+            paddingBottom: Platform.OS === "android" ? 80 : 0,
             borderTopColor: "transparent",
           },
           tabBarIcon: () => <FontAwesome name="user" size={28} color="black" />,
