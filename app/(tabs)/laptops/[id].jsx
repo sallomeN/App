@@ -2,7 +2,8 @@ import { Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { useEffect } from "react";
-import { useProfileContext } from "../../../context/profile/profile.context";
+// import { useProfileContext } from "../../../context/profile/profile.context";
+import { useLaptops } from "../../../api/laptops/useLaptops";
 // const laptops = [
 //   {
 //     id: "1",
@@ -90,11 +91,12 @@ import { useProfileContext } from "../../../context/profile/profile.context";
 // ];
 
 export default function PhoneDetails() {
-const canGoBack = router.canGoBack();
- const { id } = useLocalSearchParams();
- const { laptops } = useProfileContext();
- const router = useRouter();
- const laptop = laptops.find((item) => item.id === id);
+  const router = useRouter();
+  const canGoBack = router.canGoBack();
+  const { id } = useLocalSearchParams();
+  const { data: laptops } = useLaptops();
+
+ const laptop = laptops.find((item) => item._id === id);
 
   useEffect(() => {
     if (laptop === undefined) {

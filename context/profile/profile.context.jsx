@@ -5,11 +5,18 @@ const profileContext = createContext({});
 
 export const ProfileProvider = ({ children }) => {
   const { profileDetails, dispatch } = useProfileDetails();
-  const currentUser = profileDetails.currentUser;
-  const users = profileDetails.users;
+  const { currentUser, users, phones, laptops } = profileDetails;
 
   return (
-    <profileContext.Provider value={{ currentUser, users, dispatch }}>
+    <profileContext.Provider
+      value={{
+        currentUser,
+        users,
+        phones,
+        laptops,
+        dispatch,
+      }}
+    >
       {children}
     </profileContext.Provider>
   );

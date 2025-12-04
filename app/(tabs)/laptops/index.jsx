@@ -1,9 +1,12 @@
-import { StyleSheet, View, FlatList } from "react-native";
+import { StyleSheet, View, FlatList, RefreshControl } from "react-native";
 import { SafeAreaView, SafeAreaProvider } from "react-native-safe-area-context";
 import { phoneWidth } from "../../../constants/Dimensions";
 import { Card } from "../../../components/Card";
 import { useRouter } from "expo-router";
-import axios from "axios";
+import { useLaptops } from "../../../api/laptops/useLaptops";
+// import axios from "axios";
+// import { useEffect } from "react";
+// import { useProfileContext } from "../../../context/profile/profile.context";
 
 // const laptops = [
 //   {
@@ -80,24 +83,11 @@ import axios from "axios";
 
 const LaptopsScreen = () => {
   const router = useRouter();
- const { dispatch, laptops } = useProfileContext();
-
- useEffect(() => {
-   const fetchLaptops = async () => {
-     try {
-       const res = await axios.get("http://localhost:5000/api/laptops");
-       dispatch({ type: "SET_LAPTOPS", payload: res.data });
-     } catch (err) {
-       console.log(err);
-     }
-   };
-
-   fetchLaptops();
- }, []);
+  const { data: laptops, isLoading, refetch, isRefetching } = useLaptops();
 
   const goToDetails = (item) => {
     router.push({
-      pathname: `/laptops/${item.id}`,
+      pathname: `/laptops/${item._id}`,
       params: {
         name: item.name,
         price: item.price,
@@ -105,6 +95,12 @@ const LaptopsScreen = () => {
       },
     });
   };
+  if (isLoading)
+    return (
+      <View>
+        <Text>Loading...</Text>
+      </View>
+    );
 
   return (
     <View style={styles.container}>
@@ -122,6 +118,9 @@ const LaptopsScreen = () => {
             onPress={() => goToDetails(item)}
           />
         )}
+        refreshControl={
+          <RefreshControl refreshing={isRefetching} onRefresh={refetch} />
+        }
       />
     </View>
   );

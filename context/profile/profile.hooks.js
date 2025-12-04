@@ -3,8 +3,8 @@ import { useReducer } from "react";
 const initialState = {
   users: [], //ეს მასივი შეინახავს დარეგისტრირებულ მომხმარებლებს
   currentUser: null, //თავიდან მომხმარებელი არის null
-  laptops: [],
-  phones: []
+  // laptops: [],
+  // phones: []
 };
 
 
@@ -25,11 +25,11 @@ const reducer = (state, action) => {
       );
       return { ...state, users: updatedUsers, currentUser: action.payload };
 
-    case "SET_LAPTOPS":
-      return { ...state, laptops: action.payload };
+    // case "SET_LAPTOPS":
+    //   return { ...state, laptops: action.payload };
 
-    case "SET_PHONES":
-      return { ...state, phones: action.payload };
+    // case "SET_PHONES":
+    //   return { ...state, phones: action.payload };
 
     default:
       return state;

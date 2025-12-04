@@ -1,10 +1,12 @@
-import { StyleSheet, FlatList, View} from "react-native";
-import { SafeAreaView, SafeAreaProvider } from "react-native-safe-area-context";
+import { StyleSheet, FlatList, View, RefreshControl} from "react-native";
+// import { SafeAreaView, SafeAreaProvider } from "react-native-safe-area-context";
 import { phoneWidth } from "../../../constants/Dimensions";
 import { Card } from "../../../components/Card";
 import { useRouter } from "expo-router";
-import axios from "axios";
-
+// import axios from "axios";
+// import { useEffect } from "react";
+// import { useProfileContext } from "../../../context/profile/profile.context";
+import { usePhones } from "../../../api/phones/usePhones";
 // const phones = [
 //   {
 //     id: "1",
@@ -80,25 +82,12 @@ import axios from "axios";
 
 const PhonesScreen = () => {
   const router = useRouter();
-const { dispatch, phones } = useProfileContext();
-
-useEffect(() => {
-  const fetchPhones = async () => {
-    try {
-      const res = await axios.get("http://localhost:5000/api/phones");
-      dispatch({ type: "SET_PHONES", payload: res.data });
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  fetchPhones();
-}, []);
+  const { data: phones, isLoading, refetch, isRefetching } = usePhones();
 
   
   const goToDetails = (item) => {
     router.push({
-      pathname: `/${item.id}`,
+      pathname: `/${item._id}`,
       params: {
         name: item.name,
         price: item.price,
@@ -107,6 +96,13 @@ useEffect(() => {
     });
   };
 
+ if (isLoading)
+   return (
+     <View>
+       <Text>Loading...</Text>
+     </View>
+   );
+   
   return (
     <View style={styles.container}>
       <FlatList
@@ -124,6 +120,9 @@ useEffect(() => {
             onPress={() => goToDetails(item)}
           />
         )}
+        refreshControl={
+          <RefreshControl refreshing={isRefetching} onRefresh={refetch} />
+        }
       />
     </View>
   );

@@ -3,6 +3,9 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import { Slot, useRouter } from "expo-router";
 import { ProfileProvider, useProfileContext, } from "../context/profile/profile.context";
 import { getData } from "../utils/AsyncStorage";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
 
 const Initializer = () => {
   const router = useRouter();
@@ -26,11 +29,13 @@ const Initializer = () => {
 
 const RootLayout = () => {
   return (
-    <ProfileProvider>
-      <SafeAreaProvider>
-        <Initializer />
-      </SafeAreaProvider>
-    </ProfileProvider>
+    <QueryClientProvider client={queryClient}>
+      <ProfileProvider>
+        <SafeAreaProvider>
+          <Initializer />
+        </SafeAreaProvider>
+      </ProfileProvider>
+    </QueryClientProvider>
   );
 };
 
