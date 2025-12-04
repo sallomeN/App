@@ -1,4 +1,4 @@
-import { StyleSheet, View, FlatList, RefreshControl } from "react-native";
+import { StyleSheet, View, FlatList, RefreshControl, Text } from "react-native";
 import { SafeAreaView, SafeAreaProvider } from "react-native-safe-area-context";
 import { phoneWidth } from "../../../constants/Dimensions";
 import { Card } from "../../../components/Card";

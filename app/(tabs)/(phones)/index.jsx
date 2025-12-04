@@ -1,4 +1,4 @@
-import { StyleSheet, FlatList, View, RefreshControl} from "react-native";
+import { StyleSheet, FlatList, View, RefreshControl, Text } from "react-native";
 // import { SafeAreaView, SafeAreaProvider } from "react-native-safe-area-context";
 import { phoneWidth } from "../../../constants/Dimensions";
 import { Card } from "../../../components/Card";
@@ -84,7 +84,6 @@ const PhonesScreen = () => {
   const router = useRouter();
   const { data: phones, isLoading, refetch, isRefetching } = usePhones();
 
-  
   const goToDetails = (item) => {
     router.push({
       pathname: `/${item._id}`,
@@ -96,13 +95,14 @@ const PhonesScreen = () => {
     });
   };
 
- if (isLoading)
-   return (
-     <View>
-       <Text>Loading...</Text>
-     </View>
-   );
-   
+  if (isLoading) {
+    return (
+      <View>
+        <Text>Loading...</Text>
+      </View>
+    );
+  }
+
   return (
     <View style={styles.container}>
       <FlatList
@@ -141,4 +141,5 @@ const styles = StyleSheet.create({
     fontWeight: "600",
   },
 });
+
 export default PhonesScreen;
