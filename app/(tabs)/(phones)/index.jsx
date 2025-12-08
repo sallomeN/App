@@ -13,13 +13,14 @@ const goToDetails = (item) => {
   });
 };
 
- if (isLoading)
-   return (
-     <View>
-       <Text>Loading...</Text>
-     </View>
-   );
-   
+  if (isLoading) {
+    return (
+      <View>
+        <Text>Loading...</Text>
+      </View>
+    );
+  }
+
   return (
     <View style={styles.container}>
       <FlatList
@@ -57,4 +58,5 @@ const styles = StyleSheet.create({
     fontWeight: "600",
   },
 });
+
 export default PhonesScreen;
