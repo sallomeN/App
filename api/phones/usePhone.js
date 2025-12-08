@@ -1,12 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
 import { api } from "../axiosInstance";
 
-export const usePhones = () => {
+export const usePhone = (id) => {
   return useQuery({
-    queryKey: ["phones"],
+    queryKey: ["phone", id],
     queryFn: async () => {
-      const response = await api.get("/phones");
+      const response = await api.get(`/phones/${id}`);
       return response.data;
     },
+    enabled: !!id,
   });
 };
+

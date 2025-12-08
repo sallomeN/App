@@ -44,12 +44,39 @@ const Register = () => {
             password: "",
           }}
           validationSchema={RegisterSchema}
-          onSubmit={(values) => {
-            dispatch({ type: "REGISTER", payload: values });
-            router.push("/logIn");
+          onSubmit={async (values) => {
+            try {
+              const response = await fetch(
+                "http://192.168.1.95:5000/api/auth/register",
+                {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify(values),
+                }
+              );
+
+              const data = await response.json();
+
+              if (response.ok) {
+                Alert.alert("Success", "Account created successfully!");
+                router.push("/logIn");
+              } else {
+                Alert.alert("Registration failed", data.message);
+              }
+            } catch (error) {
+              console.error(error);
+              Alert.alert("Error", "Something went wrong");
+            }
           }}
         >
-          {({ handleChange, handleSubmit, values, errors, touched, handleBlur }) => (
+          {({
+            handleChange,
+            handleSubmit,
+            values,
+            errors,
+            touched,
+            handleBlur,
+          }) => (
             <>
               <TextInput
                 placeholder="Name"

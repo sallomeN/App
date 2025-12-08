@@ -42,20 +42,26 @@ const LogIn = () => {
 //   };
 
 const handleLogin = async (values) => {
-    const user = users.find(
-      (u) => u.email === values.email && u.password === values.password
-    );
+  try {
+    const response = await fetch("http://192.168.1.95:5000/api/auth/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(values),
+    });
 
-    if (user) {
-      dispatch({ type: "LOGIN", payload: user });
+    const data = await response.json();
 
-      await saveData("currentUser", user);
-
+    if (response.ok) {
+      await saveData("token", data.token);
       router.push("/(tabs)");
     } else {
-      Alert.alert("Login failed", "Invalid email or password");
+      Alert.alert("Login failed", data.message);
     }
-  };
+  } catch (error) {
+    console.error(error);
+    Alert.alert("Error", "Something went wrong");
+  }
+};
 
   return (
     <KeyboardAvoidingView
